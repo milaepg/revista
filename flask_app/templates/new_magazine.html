@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <title>new</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+                <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        </head>
+        <body>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="container">
+                    <div class=flashes>
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endwith %}
+            <div class="wrapper">
+                    <div class="nav-new">
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item"><a  class="nav-link"  href="/dashboard">Dashboard</a></li>
+                            <li class="nav-item"><a  class="btn btn-outline-primary" href="/logout">Logout</a></li>    
+                        </ul>    
+                    </div>
+            
+                
+                <div class="main-container-new">
+                    
+                    <h1>Add a Magazine</h1>
+                    
+                    <form class="form-new" action="/magazine/create" method="POST">
+                        <div class="mb-3">
+                            <label for="title">title</label>
+                            <input class="form-control" type="text" name="title" >
+                        </div>
+                        <div class="mb-3">
+                           <label for="description">description</label>
+                            <input class="form-control" rows="50" type="textarea" name="description" > 
+                        </div>
+                        
+                        <button  class="btn btn-primary mb-3" type="submit">submit</button>
+                    </form>
+                </div>
+            </div>
+        </body>
+</html>
